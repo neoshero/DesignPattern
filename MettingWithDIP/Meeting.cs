@@ -17,7 +17,8 @@ namespace designpattern.MettingWithDIP
 
         //抽象不依赖于细节,细节应该依赖于抽象
         //当新的国家参与到会议中来,我们只需要添加一个语言对象应对需求的变化
-        //它对于IPerson来说只是一个新的派生类,不需要关注具体的细节
+        //它对于IPerson来说只是一个新的派生类,不需要关注具体的细节,
+        //新的语言依赖于抽象
         public void Say(string lang)
         {
             if(lang == "Italy")
