@@ -1,4 +1,6 @@
 ﻿using System;
+using designpattern.ErrorDemo;
+using designpattern.OCPDemo;
 
 namespace designpattern
 {
@@ -6,7 +8,23 @@ namespace designpattern
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            #region  ErrorDemo   
+            var messageHelper = new MessageHelper(MessageType.Email);
+            messageHelper.SendMessage("Email information.");
+
+            var phoneHelper = new MessageHelper(MessageType.Phone);
+            phoneHelper.SendMessage("Phone information.");
+            #endregion
+
+            #region OCP
+            IMessage message = new MailMessage();
+            var ocpMessageHelper = new OCPMessageHelper(message);
+            ocpMessageHelper.SendMessage("Email information.");
+
+            message = new MobileMessage();
+            var ocpMobileHelper = new OCPMessageHelper(message);
+            ocpMobileHelper.SendMessage("Phone information.");
+            #endregion
         }
     }
 }
