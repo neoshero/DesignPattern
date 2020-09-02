@@ -34,7 +34,7 @@ namespace designpattern.Strategy
         private readonly ITax _tax;
         public SalesOrder()
         {
-            //这里需要使用到工厂模式
+            //这里需要使用到工厂模式 后续再修改
             //_tax = StrategyFactory.CreateStrategy();
         }
 
