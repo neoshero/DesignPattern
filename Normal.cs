@@ -1,32 +1,68 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+
 namespace designpattern.Normal
 {
-    public enum  Tax
+    public enum  DiscountType
     {
-        England,
-        American,
-        France
+        [Description("9折优惠")]
+        Discount,
+
+        [Description("满300减20")]
+        FullAndSubtract
     }
 
     public class SalesOrder
     {
-        public Tax _tax;
+        private DiscountType _discountType;
+        private List<decimal> _products;
+        public SalesOrder(DiscountType discountType)
+        {
+            _discountType = discountType;
+            _products = new List<decimal>();
+        }
+        
+        //添加一个商品,为了简单设计,只添加价格
+        public void AddProduct(decimal price)
+        {
+            _products.Add(price);
+        }
+         
+        public decimal CaculateCost()
+        {
+            decimal cost = _products.Sum();
 
-        //当我们需要计算税率的国家越来越多,程序维护与拓展性大大降低
-        public decimal CaculateTax()
-        {
-        if(_tax == Tax.American)
-        {
-            //doWrok
+            if(_discountType == DiscountType.Discount)
+            {
+                cost = cost * 0.9m;
+            }
+
+            if(_discountType == DiscountType.FullAndSubtract)
+            {
+                if(cost >= 300)
+                {
+                    cost = cost - 20;
+                }
+                
+            }
+           
+            return cost;
         }
-        else if(_tax == Tax.England)
+    }
+
+    public class Program
+    {
+        void Main()
         {
-            //doWork
-        }
-        else if(_tax == Tax.France)
-        {
-            //doWork
-        }
-        return 0m;
+            var salesOrder = new SalesOrder(DiscountType.Discount);
+            salesOrder.AddProduct(90);
+            salesOrder.AddProduct(100);
+            salesOrder.AddProduct(120);
+
+            var cost = salesOrder.CaculateCost();
+            System.Console.WriteLine($"实际需要支付金额{cost}");  
         }
     }
     

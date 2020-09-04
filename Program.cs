@@ -6,7 +6,7 @@ namespace designpattern
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            new designpattern.Strategy.Program().Main();
         }
     }
 }
