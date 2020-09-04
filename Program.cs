@@ -6,7 +6,9 @@ namespace designpattern
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            // new designpattern.Normal.Program().Main();
+            // new designpattern.ObServerSingle.Program().Main();
+            // new designpattern.ObServerMaster.Program().Main();
         }
     }
 }
