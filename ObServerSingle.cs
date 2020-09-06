@@ -52,11 +52,11 @@ namespace designpattern.ObServerSingle
         {
            for(var temperature = 1; temperature <= 100;temperature++)
            {
-               OnNotify(temperature);
+               OnUpdate(temperature);
            }
         }
 
-        public void OnNotify(int temperature)
+        public void OnUpdate(int temperature)
         {
             _cookerControll.OnNotify(temperature);
         }
