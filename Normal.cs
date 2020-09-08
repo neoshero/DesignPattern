@@ -39,7 +39,7 @@ namespace designpattern.Normal
                 cost = cost * 0.9m;
             }
 
-            if(_discountType == DiscountType.FullAndSubtract)
+            else if(_discountType == DiscountType.FullAndSubtract)
             {
                 if(cost >= 300)
                 {
