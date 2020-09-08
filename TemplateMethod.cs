@@ -1,32 +1,36 @@
-namespace designpattern.TemplateMethod
+namespace DesignPattern.TemplateMethod
 {
-    public class Libary
+    public class HttpApplication
     {
-        private void Step1(){}
-        protected virtual bool Step2(){ return true;}
-        private void Step3(){}
-        protected virtual void Step4(){}
-        private void Step5(){}
+        private void Request(){}
+        private void Routing(){}
+        private void Execute(){}
 
-        public void Run()
+        protected virtual void Authenticate(){}
+        protected virtual void Authorize(){}
+        public void Main()
         {
-            Step1();
-            if(Step2())
+            Request();
+            Routing();
+            if(Authenticate() && Authorize())
             {
-                Step3();
+                Execute();
             }
-            for(var i=0;i<10;i++)
-            {
-                Step4();
-            }
-            Step5();
         }
     }
 
-    public class Application:Libary
+    public class CustomApplication:HttpApplication
     {
-        protected override bool Step2(){return true;}
-        protected override void Step4(){}
+        protected override bool Authenticate(){return true;}
+        protected override void Authorize(){}
     }
 
+    public class Program
+    {
+        public void Main()
+        {
+            CustomApplication builder = new CustomApplication();
+            builder.Main();
+        }
+    }
 }
