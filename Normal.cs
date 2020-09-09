@@ -1,21 +1,21 @@
 namespace designpattern.Normal
 {
-    public class CookerControll
+    public class CookerControl
     {
-        private readonly TemperatureControll _temperatureControll;
+        private readonly TemperatureControl _temperatureControl;
 
-        public CookerControll(TemperatureControll temperatureControll)
+        public CookerControl(TemperatureControl temperatureControl)
         {
-            _temperatureControll = temperatureControll;
+            _temperatureControl = temperatureControl;
         }
 
         public void OnNotify(int temperature)
         {
-            _temperatureControll.DoWork(temperature);
+            _temperatureControl.DoWork(temperature);
         }
     }
 
-    public class TemperatureControll
+    public class TemperatureControl
     {
         public void DoWork(int temperature)
         {
@@ -25,10 +25,10 @@ namespace designpattern.Normal
 
     public class Program
     {
-        private readonly CookerControll _cookerControll;
+        private readonly CookerControl _cookerControl;
         public Program()
         {
-            _cookerControll = new CookerControll(new TemperatureControll());
+            _cookerControl = new CookerControl(new TemperatureControl());
         }
 
         public void Main()
@@ -42,7 +42,7 @@ namespace designpattern.Normal
 
         public void  OnUpdate(int temperature)
         {
-            _cookerControll.OnNotify(temperature);
+            _cookerControl.OnNotify(temperature);
         }
     }
     

@@ -2,12 +2,12 @@ using System.Collections.Generic;
 
 namespace designpattern.ObServerMaster
 {
-    public interface IControll
+    public interface IControl
     {
         void DoWork(int temperature);
     }
 
-    public class SafeControll:IControll
+    public class SafeControl:IControl
     {
         public void DoWork(int temperature)
         {
@@ -18,7 +18,7 @@ namespace designpattern.ObServerMaster
         }
     } 
     
-    public class WarningLightControll:IControll
+    public class WarningLightControl:IControl
     {
         public void DoWork(int temperature)
         {
@@ -37,32 +37,32 @@ namespace designpattern.ObServerMaster
         }
     }
 
-    public class CookerControll
+    public class CookerControl
     {
-        private IList<IControll> _list;
+        private IList<IControl> _list;
 
-        public CookerControll()
+        public CookerControl()
         {
-            _list = new List<IControll>();
+            _list = new List<IControl>();
         }
 
-        public void AddControll(IControll contrll)
+        public void AddControl(IControl contrll)
         {
             _list.Add(contrll);
         }
 
-        public void RemoveControll(IControll controll)
+        public void RemoveControl(IControl Control)
         {
-            _list.Remove(controll);
+            _list.Remove(Control);
         }
 
         public void OnNotify(int temperature)
         {
             if(_list != null)
             {
-                foreach(var controll in _list)
+                foreach(var Control in _list)
                 {
-                    controll.DoWork(temperature);
+                    Control.DoWork(temperature);
                 }
             }
            
@@ -71,13 +71,13 @@ namespace designpattern.ObServerMaster
 
     public class Program
     {
-        public readonly CookerControll _cookerControll;
+        public readonly CookerControl _cookerControl;
 
         public Program()
         {
-            _cookerControll = new CookerControll();
-            _cookerControll.AddControll(new SafeControll());
-            _cookerControll.AddControll(new WarningLightControll());
+            _cookerControl = new CookerControl();
+            _cookerControl.AddControl(new SafeControl());
+            _cookerControl.AddControl(new WarningLightControl());
         }
         public void Main()
         {
@@ -90,7 +90,7 @@ namespace designpattern.ObServerMaster
 
         public void OnUpdate(int temperature)
         {
-            _cookerControll.OnNotify(temperature);
+            _cookerControl.OnNotify(temperature);
         }
     }
     

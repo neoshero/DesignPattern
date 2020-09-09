@@ -1,16 +1,16 @@
 using System.Threading.Tasks;
 namespace designpattern.ObServerSingle
 {
-    public interface IControll
+    public interface IControl
     {
         void DoWork(int temperature);
     }
 
-    public class WarningLightControll:IControll
+    public class WarningLightControl:IControl
     {
         public void DoWork(int temperature)
         {
-             if(temperature < 40)
+            if(temperature < 40)
             {
                 System.Console.WriteLine($"指示灯提示,绿灯亮了");
             }
@@ -25,27 +25,27 @@ namespace designpattern.ObServerSingle
         }
     }
 
-    public class CookerControll
+    public class CookerControl
     {
-        private readonly IControll _controll;
+        private readonly IControl _Control;
 
-        public CookerControll(IControll controll)
+        public CookerControl(IControl Control)
         {
-            _controll = controll;
+            _Control = Control;
         }
 
         public void OnNotify(int temperature)
         {
-            _controll.DoWork(temperature);
+            _Control.DoWork(temperature);
         }
     }
 
     public class Program
     {
-        private readonly CookerControll _cookerControll;
+        private readonly CookerControl _cookerControl;
         public Program()
         {
-            _cookerControll = new CookerControll(new WarningLightControll());
+            _cookerControl = new CookerControl(new WarningLightControl());
         }
 
         public void Main()
@@ -58,7 +58,7 @@ namespace designpattern.ObServerSingle
 
         public void OnUpdate(int temperature)
         {
-            _cookerControll.OnNotify(temperature);
+            _cookerControl.OnNotify(temperature);
         }
     }
     
