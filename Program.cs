@@ -17,9 +17,6 @@ namespace DesignPattern
             var crypto = new DesignPattern.Decorator.CryptoStream(networkStream);
             var buffer = new DesignPattern.Decorator.BufferStream(crypto);
             buffer.Read(1);
-
-            // CryptoStream
-
         }
     }
 }
