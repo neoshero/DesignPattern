@@ -1,5 +1,4 @@
-﻿using System.Security.Cryptography;
-using System.IO;
+﻿using System.IO;
 using System;
 
 namespace DesignPattern
